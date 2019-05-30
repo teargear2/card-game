@@ -5,3 +5,5 @@ game.state.add('Register',Register);
 game.state.add('Home',Home);
 game.state.add('Information',information)
 game.state.start('Login');
+game.state.add('prepare',prepare)
+game.state.start('prepare')
