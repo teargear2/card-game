@@ -7,8 +7,8 @@ Information.init = function(){
 Information.preload = function(){
     game.load.audio('information_bgm','assets/music/information_bgm')
     game.load.image('information_background','assets/pic/background3.jpg');
-    game.load.image
-    game.load.image
+    game.load.image('save_btn','assets/pic/save-button.png');
+    game.load.image('back_btn','assets/pic/back-button.png');
 };
 
 Information.create = function(){
