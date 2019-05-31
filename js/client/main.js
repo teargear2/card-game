@@ -3,7 +3,8 @@ var game = new Phaser.Game(1920, 1080, Phaser.AUTO, document.getElementById('gam
 game.state.add('Login',Login);
 game.state.add('Register',Register);
 game.state.add('Home',Home);
-game.state.add('Information',information)
-game.state.start('Login');
-game.state.add('prepare',prepare)
-game.state.start('prepare')
+game.state.add('Information',Information);
+game.state.add('prepare',prepare);
+
+game.state.start('Information');
+
