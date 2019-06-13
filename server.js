@@ -19,6 +19,9 @@ Schema = mongoose.Schema;
 UserSchema = new Schema({
     username : String,
     password : String,
+    birth : String,
+    gender : String,
+    intro : String,
     status : String
 });
 
@@ -36,6 +39,18 @@ server.listen(process.env.PORT || 8081,function(){
     console.log('Listening on '+server.address().port);
 });
 
+/*
+UserModel.findOne({username : 'aaa'},function(err,doc){
+    if(err)
+        console.log(err);
+    if(!doc)
+        console.log('none');
+    else
+        console.log(doc.password);
+        console.log(doc.gender);
+});
+*/
+
 io.on('connection',function(socket){
 
     socket.on('newlogin',function(data){
@@ -43,7 +58,10 @@ io.on('connection',function(socket){
             if(!user){
                 socket.emit('loginfailed');
             }else{
-                socket.emit('loginsucceed');
+                socket.emit('loginsucceed',{
+                    username : data.username,
+                    userid : socket.id
+                });
             }
         });
     });
@@ -61,6 +79,68 @@ io.on('connection',function(socket){
                     socket.emit('registersucceed');
                 });
             }
+        });
+    });
+
+    socket.on('usernamemodify',function(data){
+        UserModel.update({username : data.oldusername},{username : data.newusername},function(err,docs){
+            if(err) console.log(err);
+            else{
+            console.log('Modification Succeed: ' + docs);
+            socket.emit('modificationsucceed');
+            }
+        });
+    });
+
+    socket.on('passwordmodify',function(data){
+        UserModel.update({username : data.username},{password : data.newpassword},function(err,docs){
+            if(err) console.log(err);
+            else{
+            console.log('Modification Succeed: ' + docs);
+            socket.emit('modificationsucceed');
+            }
+        });
+    });
+
+    socket.on('userbirthmodify',function(data){
+        UserModel.update({username : data.username},{birth : data.newuserbirth},function(err,docs){
+            if(err) console.log(err);
+            else{
+            console.log('Modification Succeed: ' + docs);
+            socket.emit('modificationsucceed');
+            }
+        });
+    });
+
+    socket.on('usergendermodify',function(data){
+        UserModel.update({username : data.username},{gender : data.newusergender},function(err,docs){
+            if(err) console.log(err);
+            else{
+            console.log('Modification Succeed: ' + docs);
+            socket.emit('modificationsucceed');
+            }
+        });
+    });
+
+    socket.on('userintromodify',function(data){
+        UserModel.update({username : data.username},{intro : data.newuserintro},function(err,docs){
+            if(err) console.log(err);
+            else{
+            console.log('Modification Succeed: ' + docs);
+            socket.emit('modificationsucceed');
+            }
+        });
+    });
+
+    socket.on('inforequest',function(data){
+        UserModel.findOne({username : data},function(err,doc){
+            socket.emit('infosend',{
+                username : doc.username,
+                password : doc.password,
+                birth : doc.birth,
+                gender : doc.gender,
+                intro : doc.intro
+            });
         });
     });
 });

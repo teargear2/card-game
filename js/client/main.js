@@ -6,5 +6,5 @@ game.state.add('Home',Home);
 game.state.add('Information',Information);
 game.state.add('prepare',prepare);
 
-game.state.start('Information');
+game.state.start('Login');
 
