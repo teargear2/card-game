@@ -1,4 +1,7 @@
 var Register = {};
+var back;
+var sure;
+
 
 Register.init = function(){
     game.add.plugin(Fabrique.Plugins.InputField);
@@ -6,11 +9,6 @@ Register.init = function(){
 
 Register.preload = function(){
     game.load.image('register_background','assets/pic/background2.jpg');
-<<<<<<< HEAD
-    game.load.image('back-button','assets/pic/back.png');
-    game.load.image('confirm-button','assets/pic/confirm.png');
-=======
->>>>>>> 841487779c4311a1692a8fd0028a3a6fbf853364
 };
 
 Register.create = function(){
@@ -20,11 +18,7 @@ Register.create = function(){
 };
 
 Register.display_input = function(){
-<<<<<<< HEAD
     Register.username_input = game.add.inputField(400, 300,{
-=======
-    Register.username_input = game.add.inputField(1200, 300,{
->>>>>>> 841487779c4311a1692a8fd0028a3a6fbf853364
         width: 300,
         padding: 10,
         fill: '#000',
@@ -39,11 +33,7 @@ Register.display_input = function(){
         cursorColor: '#b2af9b',
         max: 20
     });
-<<<<<<< HEAD
     Register.password_input = game.add.inputField(400, 400,{
-=======
-    Register.password_input = game.add.inputField(1200, 400,{
->>>>>>> 841487779c4311a1692a8fd0028a3a6fbf853364
         width: 300,
         padding: 10,
         fill: '#000',
@@ -58,16 +48,14 @@ Register.display_input = function(){
         cursorColor: '#b2af9b',
         max: 20
     });
+    loginbel = game.add.text(420,560,"注册",textStyle);
+    registerbel = game.add.text(605,560,"返回登录界面",textStyle);
+
 };
 
 Register.display_button = function(){
-<<<<<<< HEAD
-    Register.confirm_button = game.add.button(400,500,'confirm-button',Client.send_register);
-    Register.back_button = game.add.button(625,500,'back-button',function(){
-=======
-    Register.confirm_button = game.add.button(1200,500,'btn',Client.send_register);
-    Register.back_button = game.add.button(1425,500,'btn',function(){
->>>>>>> 841487779c4311a1692a8fd0028a3a6fbf853364
+    Register.confirm_button = game.add.button(400,500,'btn',Client.send_register);
+    Register.back_button = game.add.button(625,500,'btn',function(){
         game.state.start('Login');
     });
 };
